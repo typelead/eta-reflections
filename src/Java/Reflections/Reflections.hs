@@ -4,7 +4,9 @@ module Java.Reflections.Reflections where
 import Java
 import Java.Collections
 import Java.Concurrent
+import Java.Reflection.Types
 import Java.Reflections.Types
+import Interop.Java.IO
 import Interop.Java.Net
 
 -- Start @org.reflections.Configuration
@@ -24,3 +26,20 @@ foreign import java unsafe "@interface" getUrls :: Java Configuration (Set URL)
 foreign import java unsafe "@interface" shouldExpandSuperTypes :: Java Configuration Bool
 
 -- End @org.reflections.Configuration
+
+-- Start @org.reflections.Reflections
+
+foreign import java unsafe collect :: File -> Java Reflections Reflections
+
+foreign import java unsafe "collect" collectInputStream :: InputStream -> Java Reflections Reflections
+
+foreign import java unsafe expandSuperTypes :: Java Reflections ()
+
+foreign import java unsafe getAllAnnotated :: Iterable JString -> Bool -> Bool
+  -> Java Reflections (Iterable JString)
+
+foreign import java unsafe getAllTypes :: Java Reflections (Set JString)
+
+foreign import java unsafe getConfiguration :: Java Reflections Configuration
+
+foreign import java unsafe getConstructorParamNames :: Constructor a -> Java Reflections (List JString)

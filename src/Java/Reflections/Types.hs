@@ -25,3 +25,6 @@ data Scanner = Scanner @org.reflections.scanners.Scanner
 
 data Serializer = Serializer @org.reflections.serializers.Serializer
   deriving Class
+
+data Reflections = Reflections @org.reflections.serializers.Reflections
+  deriving Class
