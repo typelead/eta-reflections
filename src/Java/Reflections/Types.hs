@@ -22,3 +22,6 @@ data MetadataAdapter = MetadataAdapter @org.reflections.adapters.MetadataAdapter
 
 data Scanner = Scanner @org.reflections.scanners.Scanner
   deriving Class
+
+data Serializer = Serializer @org.reflections.serializers.Serializer
+  deriving Class
