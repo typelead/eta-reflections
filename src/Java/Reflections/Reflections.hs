@@ -1,4 +1,4 @@
-{-# LANGUAGE DataKinds, TypeFamilies, MultiParamTypeClasses #-}
+{-# LANGUAGE DataKinds, TypeFamilies, MultiParamTypeClasses, TypeOperators, FlexibleContexts #-}
 module Java.Reflections.Reflections where
 
 import Java
@@ -43,3 +43,11 @@ foreign import java unsafe getAllTypes :: Java Reflections (Set JString)
 foreign import java unsafe getConfiguration :: Java Reflections Configuration
 
 foreign import java unsafe getConstructorParamNames :: Constructor a -> Java Reflections (List JString)
+
+foreign import java unsafe getConstructorsAnnotatedWith :: Annotation -> Java Reflections (Set (Constructor a))
+
+foreign import java unsafe "getConstructorsAnnotatedWith" getConstructorsAnnotatedWith1 :: (a <: Annotation)
+  => JClass a -> Java Reflections (Set (Constructor a))
+
+foreign import java unsafe getConstructorsMatchParams :: (a <: Object)
+  => JClass a -> Java Reflections (Set (Constructor t))
